@@ -1,0 +1,26 @@
+language: node_js
+node_js:
+  - 14
+
+services:
+  - docker
+
+install:
+  - echo "Nothing to be installed..."
+
+before_script:
+  - echo "Carrying out no tests..."
+
+script:
+  - docker --version
+  - docker build -t udagram-api-user:v1 ./udagram-api-user
+  - docker build -t udagram-api-feed:v1 ./udagram-api-feed
+  - docker build -t udagram-frontend:v1 ./udagram-frontend
+  - docker build -t reverseproxy:v1 ./udagram-reverseproxy
+
+after_success:
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+  - docker push bmckay900/udagram-api-user
+  - docker push bmckay900/udagram-api-feed
+  - docker push bmckay900/udagram-frontend
+  - docker push bmckay900/reverseproxy
