@@ -18,7 +18,7 @@ script:
   - docker build -t udagram-api-feed ./udagram-api-feed
   - docker tag udagram-api-feed bmckay900/udagram-api-feed:v1
   - docker build -t udagram-frontend ./udagram-frontend
-  - docker tag udagram-api-frontend bmckay900/udagram-frontend:v1
+  - docker tag udagram-frontend bmckay900/udagram-frontend:v1
   - docker build -t reverseproxy ./udagram-reverseproxy
   - docker tag reverseproxy bmckay900/reverseproxy:v1
 
